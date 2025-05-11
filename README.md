@@ -50,4 +50,4 @@ This project is a **Customer Dashboard** app built using **Flutter**. It allows 
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/customer-dashboard.git
+git clone https://github.com/Arshadshaykh/Cutomer-Dashboard.git

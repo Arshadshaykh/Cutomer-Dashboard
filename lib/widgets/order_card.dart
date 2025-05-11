@@ -45,118 +45,129 @@ class OrderCard extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: ExpansionTile(
-                  tilePadding: EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 8,
+                child: Theme(
+                  data: Theme.of(context).copyWith(
+                    splashColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
                   ),
-                  childrenPadding: EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 8,
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(AppSizes.cornerRadius),
-                  ),
-                  title: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            '${order.orderId} - ${order.customer}',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.textPrimary,
-                              fontSize: 16,
-                            ),
-                          ),
-                          Text(
-                            'Total: ₹${getTotal()}',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.textPrimary,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          RichText(
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: '${order.items.length} ',
-                                  style: TextStyle(
-                                    color: AppColors.darkBlue,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                TextSpan(
-                                  text: 'Items',
-                                  style: TextStyle(
-                                    color: AppColors.darkThemeSecondary,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          RichText(
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: 'Order Date: ',
-                                  style: TextStyle(
-                                    color: AppColors.darkThemeMain,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                TextSpan(
-                                  text:
-                                      '${order.createdDate.day}/${order.createdDate.month}/${order.createdDate.year}',
-                                  style: TextStyle(
-                                    color: AppColors.darkThemeSecondary,
-                                    fontSize: 15,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  leading: CircleAvatar(
-                    backgroundColor: AppColors.darkBlue,
-                    child: Text(
-                      order.customer[0],
-                      style: TextStyle(color: AppColors.white),
+                  child: ExpansionTile(
+                    enableFeedback: false,
+                    tilePadding: EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 8,
                     ),
-                  ),
-                  children:
-                      order.items
-                          .map<Widget>(
-                            (item) => Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 4),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                    childrenPadding: EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 8,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                        AppSizes.cornerRadius,
+                      ),
+                    ),
+                    title: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              '${order.orderId} - ${order.customer}',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.textPrimary,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Text(
+                          'Total: ₹${getTotal()}',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.textPrimary,
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            RichText(
+                              text: TextSpan(
                                 children: [
-                                  Text(
-                                    item.product,
+                                  TextSpan(
+                                    text: '${order.items.length} ',
                                     style: TextStyle(
-                                      color: AppColors.textPrimary,
+                                      color: AppColors.darkBlue,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  Text('₹${item.price}'),
+                                  TextSpan(
+                                    text: 'Items',
+                                    style: TextStyle(
+                                      color: AppColors.darkThemeSecondary,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
-                          )
-                          .toList(),
+                            RichText(
+                              text: TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: 'Order Date: ',
+                                    style: TextStyle(
+                                      color: AppColors.darkThemeMain,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text:
+                                        '${order.createdDate.day}/${order.createdDate.month}/${order.createdDate.year}',
+                                    style: TextStyle(
+                                      color: AppColors.darkThemeSecondary,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    leading: CircleAvatar(
+                      backgroundColor: AppColors.darkBlue,
+                      child: Text(
+                        order.customer[0],
+                        style: TextStyle(color: AppColors.white),
+                      ),
+                    ),
+                    children:
+                        order.items
+                            .map<Widget>(
+                              (item) => Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 4,
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      item.product,
+                                      style: TextStyle(
+                                        color: AppColors.textPrimary,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text('₹${item.price}'),
+                                  ],
+                                ),
+                              ),
+                            )
+                            .toList(),
+                  ),
                 ),
               ),
               Positioned(
